@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Descubre La Línea</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #0b1120;
+      color: #f9fafb;
+      line-height: 1.5;
+    }
+
+    /* LAYOUT GENERAL */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-inner {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 24px 24px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 28px 24px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.35);
+      color: #111827;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .section-text {
+      font-size: 0.98rem;
+      color: #4b5563;
+    }
+
+    /* HEADER con fondo imagen 1 */
+    header {
+      position: relative;
+      background-image:
+        linear-gradient(to bottom, rgba(15,23,42,0.85), rgba(15,23,42,0.6)),
+        url('https://static.wixstatic.com/media/7d0133_5e557949ecd848fea658cda67722cf01~mv2.jpg');
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid rgba(15,23,42,0.4);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 24px;
+      color: #f9fafb;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+    }
+
+    /* HERO con misma imagen de fondo */
+    .hero-wrapper {
+      background-image:
+        linear-gradient(to bottom, rgba(15,23,42,0.85), rgba(15,23,42,0.9)),
+        url('https://static.wixstatic.com/media/7d0133_5e557949ecd848fea658cda67722cf01~mv2.jpg');
+      background-size: cover;
+      background-position: center;
+      color: #f9fafb;
+    }
+
+    .hero {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.18);
+      color: #e0f2fe;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      backdrop-filter: blur(6px);
+    }
+
+    .hero-tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 2.9rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-shadow: 0 3px 10px rgba(0,0,0,0.7);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: #e5e7eb;
+      max-width: 560px;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+    }
+
+    /* SOBRE LA LÍNEA */
+    .sobre-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    .sobre-image {
+      width: 100%;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+      aspect-ratio: 4 / 3;
+    }
+
+    /* TURISMO DESTACADO */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .card {
+      background: #f9fafb;
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      background-size: cover;
+      background-position: center;
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    /* GALERÍA GASTRONOMÍA */
+    .gastro-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    .gastro-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 14px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: auto;
+      background: #020617;
+      color: #e5e7eb;
+      padding: 20px 24px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.85rem;
+    }
+
+    .footer-logo {
+      font-weight: 600;
+    }
+
+    .footer-line {
+      height: 1px;
+      background: #1f2937;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 900px) {
+      .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .sobre-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gastro-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-inner {
+        padding: 18px 16px 28px;
+        gap: 28px;
+      }
+
+      .section {
+        padding: 22px 18px;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gastro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding: 32px 16px 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER con imagen 1 -->
+    <header>
+      <div class="header-inner">
+        <div class="logo">Descubre La Línea</div>
+      </div>
+    </header>
+
+    <!-- HERO con imagen 1 de fondo -->
+    <section class="hero-wrapper">
+      <div class="hero">
+        <div class="hero-tag">
+          <span class="hero-tag-dot"></span>
+          <span>Guía local de La Línea</span>
+        </div>
+
+        <h1 class="hero-title">
+          La Línea: Donde el Mar se Encuentra con la Historia
+        </h1>
+
+        <p class="hero-subtitle">
+          Descubre el encanto de la costa más rústica de España y vive La Línea de la Concepción como un local.
+        </p>
+      </div>
+    </section>
+
+    <main class="page-inner">
+      <!-- SOBRE LA LÍNEA -->
+      <section class="section">
+        <div class="sobre-grid">
+          <div>
+            <h2 class="section-title">El Encanto de La Línea</h2>
+            <p class="section-text">
+              Descubre La Línea de la Concepción, un destino que combina mar, historia y vida local. Pasea por sus calles, disfruta de sus vistas al Peñón y piérdete entre sus rincones más auténticos.
+            </p>
+          </div>
+          <div class="sobre-image"
+               style="background-image:url('https://static.wixstatic.com/media/7d0133_1c300b8344e8469db39e4fd25f96f087~mv2.jpg');">
+          </div>
+        </div>
+      </section>
+
+      <!-- TURISMO DESTACADO (fotos reordenadas) -->
+      <section class="section">
+        <h2 class="section-title">Turismo Destacado</h2>
+        <p class="section-text">
+          Algunos de los lugares más representativos de La Línea de la Concepción.
+        </p>
+
+        <div class="cards-grid">
+          <!-- Tarjeta 1: foto 2 -->
+          <article class="card">
+            <div class="card-image"
+                 style="background-image:url('https://static.wixstatic.com/media/7d0133_6786567159594f1b99e02cdfc57a54ce~mv2.jpg');">
+            </div>
+            <h3 class="card-title">Plaza de la Iglesia</h3>
+          </article>
+
+          <!-- Tarjeta 2: foto 3 -->
+          <article class="card">
+            <div class="card-image"
+                 style="background-image:url('https://static.wixstatic.com/media/7d0133_3928afb4d0cc444388bcc63b6eaf956d~mv2.jpg');">
+            </div>
+            <h3 class="card-title">Plaza de Toros de La Línea de la Concepción</h3>
+          </article>
+
+          <!-- Tarjeta 3: foto 4 -->
+          <article class="card">
+            <div class="card-image"
+                 style="background-image:url('https://static.wixstatic.com/media/7d0133_ab1fdc5d9acb495e8b76a4dc64d4276a~mv2.jpg');">
+            </div>
+            <h3 class="card-title">Casas flotantes</h3>
+          </article>
+
+          <!-- Tarjeta 4: foto 5 -->
+          <article class="card">
+            <div class="card-image"
+                 style="background-image:url('https://static.wixstatic.com/media/7d0133_547cfc25f6a7469ea22a38d2ffac4033~mv2.jpg');">
+            </div>
+            <h3 class="card-title">Historia Costera</h3>
+          </article>
+        </div>
+      </section>
+
+      <!-- GASTRONOMÍA -->
+      <section class="section">
+        <h2 class="section-title">Gastronomía Local</h2>
+        <p class="section-text">
+          Descubre la auténtica esencia de La Línea de la Concepción a través de sus bares, chiringuitos y restaurantes junto al mar.
+        </p>
+
+        <div class="gastro-grid">
+          <div class="gastro-image"
+               style="background-image:url('https://lh3.googleusercontent.com/p/AF1QipP84kIyHpaqj_8f9om1Cae7QrpfzDTIxHLv18I8');">
+               <span style="color: white; font-size: 1.2rem; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.6); padding: 8px; border-radius: 8px; backdrop-filter: blur(4px); background-color: rgba(0, 0, 0, 0.5); display: inline-block; margin-top: 8px;">El Rincón de Juan</span>
+          </div>
+          <div class="gastro-image"
+               style="background-image:url('https://foto1.sluurpy.com/locali/es/7950811/67798901.jpg');">
+                <span style="color: white; font-size: 1.2rem; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.6); padding: 8px; border-radius: 8px; backdrop-filter: blur(4px); background-color: rgba(0, 0, 0, 0.5); display: inline-block; margin-top: 8px;">El Mesón de Lolo</span>
+          </div>
+          <div class="gastro-image"
+               style="background-image:url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR88jFXd-aaE95FRa-T9biLZhocH1DPG6BTc9oOdh-ljIvwg38K1JBnFvw&s=10');">
+               <span style="color: white; font-size: 1.2rem; font-weight: bold; text-shadow: 0 2px 4px rgba(0,0,0,0.6); padding: 8px; border-radius: 8px; backdrop-filter: blur(4px); background-color: rgba(0, 0, 0, 0.5); display: inline-block; margin-top: 8px;">West Restaurant-Bar</Restaurant-Bar></span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-logo">Descubre La Línea</div>
+        <div>Tu portal de confianza para descubrir los rincones de La Línea de la Concepción.</div>
+        <div class="footer-line"></div>
+        <div>© 2026 Descubre La Línea. Todos los derechos reservados.</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
